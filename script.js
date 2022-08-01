@@ -78,23 +78,17 @@ const colorizeFindingPath = (sr, sc, t)=>{
     btn[sr*rows[0].getElementsByTagName('td').length + sc].style.animation = `findColor 1s ease-in-out ${t}ms 1 forwards`
 }
 
-// const colorizePath = (t)=>{
+const colorizePath = (t=0)=>{
 
-//     for(let i=0;i<path.length;i++)
-//     {
-//         let r = path[i][0]
-//         let c = path[i][1]
-//         if(i == 0)
-//         {
-//             btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
-//             t = 30
-//         }
-//         else{
-//             btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
-//             t+=30
-//         }
-//     }
-// }
+    for(let i=0;i<path.length;i++)
+    {
+        let r = path[i][0]
+        let c = path[i][1]
+        btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
+        t+=10
+    }
+}
+
 
 let time = 10 //ms
 
@@ -155,7 +149,16 @@ const dfs = (sr, sc)=>{
 const visual_btn = document.getElementsByClassName('visualise')[0]
 
 visual_btn.addEventListener('click', function(){
-    dfs(startRow, startCol)
-    // setTimeout(colorizePath(), 5000)
+    let opt = document.getElementsByTagName('select')[0].value
+
+    if(opt == 1)
+    {   //DFS
+        dfs(startRow, startCol)
+        colorizePath()
+    } 
+    else if(opt == 2)
+    {
+        //Dijkstra
+    }
 })
 

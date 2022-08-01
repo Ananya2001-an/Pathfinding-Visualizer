@@ -4,7 +4,7 @@ body{
 
 .header{
     width: 100%;
-    height: 30vh;
+    height: 40vh;
 }
 
 .header nav{
@@ -43,8 +43,17 @@ body{
     text-align: center;
     font-family: var(--font);
     color: var(--bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
+.note{
+    text-align: center;
+    font-family: var(--font);
+    color: var(--bg);
+}
 .cell-btn{
     width: 100%;
     height: 100%;
@@ -52,6 +61,17 @@ body{
     border: 0.1rem solid var(--grid);
     background-color: white;
     cursor: pointer;
+}
+
+select{
+    width: 150px;
+    height: 30px;
+    background: none;
+    font-family: var(--font);
+    color: white;
+}
+select option{
+    background-color: var(--bg);
 }
 
 
@@ -91,11 +111,13 @@ body{
 
 table{
     width: 100%;
-    height: 70vh;
+    height: 60vh;
     border: 0.1rem solid var(--grid);
+    border-collapse: collapse;
 }
 td{
     padding: 0;
+    margin: 0;
 }
 
 ::-webkit-scrollbar{
