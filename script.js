@@ -8,13 +8,14 @@ for(let i=0;i<rows.length;i++)
 {
     for(let j=0;j<rows[i].getElementsByTagName('td').length;j++)
     {
-        rows[i].getElementsByTagName('td')[j].innerHTML = `<button class="cell-btn"></button>`
+        rows[i].getElementsByTagName('td')[j].innerHTML = `<button class="cell-btn" value = 500000></button>`
     }
 }
 
 
 let count = 0
 let path = new Array()
+let min_heap = new Map()
 const btn = document.getElementsByClassName('cell-btn')
 
 for(let i=0;i<btn.length;i++)
@@ -23,6 +24,8 @@ for(let i=0;i<btn.length;i++)
         if(count == 0)
         {
             btn[i].style.backgroundColor = "green"
+            btn[i].value = 0
+            
             for(let j=0;j<rows.length;j++)
             {
                 for(let k=0;k<rows[j].getElementsByTagName('td').length;k++)
@@ -64,7 +67,6 @@ for(let i=0;i<btn.length;i++)
 }
 
 
-//DFS 
 function isArrayInArray(arr, item){
     var item_as_string = JSON.stringify(item);
    
@@ -80,13 +82,27 @@ const colorizeFindingPath = (sr, sc, t)=>{
 
 const colorizePath = (t=0)=>{
 
-    for(let i=0;i<path.length;i++)
+    if(document.getElementsByTagName('select')[0].value != 2)
     {
-        let r = path[i][0]
-        let c = path[i][1]
-        btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
-        t+=10
+        for(let i=0;i<path.length;i++)
+        {
+            let r = path[i][0]
+            let c = path[i][1]
+            btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
+            t+=10
+        }
     }
+    else
+    {
+        for(let i=path.length-1;i>-1;i--)
+        {
+            let r = path[i][0]
+            let c = path[i][1]
+            btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
+            t+=10
+        }
+    }
+    
 }
 
 
@@ -145,6 +161,106 @@ const dfs = (sr, sc)=>{
     path.pop()
     return false
 }
+
+let parent = new Map()
+
+function setMaps(){
+    for(let i=0;i<rows.length;i++)
+    {
+        for(let j=0;j<rows[0].getElementsByTagName('td').length;j++)
+        {
+            if(btn[i*rows[0].getElementsByTagName('td').length + j].value != '-1')
+            {
+                min_heap.set(`[${i}, ${j}]`, btn[i*rows[0].getElementsByTagName('td').length + j].value)
+            }
+        }
+    }
+
+}
+
+
+
+
+function getByValue(searchValue) {
+  for (let [key, value] of min_heap.entries()) {
+    if (value == searchValue)
+      return key;
+  }
+}
+
+function findAllAncestors(arr) {
+    let p = parent.get(arr)
+    if(p != undefined || p!= null)
+    {
+        path.push(p)
+    }
+    findAllAncestors('p')
+}
+
+const dijkstra = ()=>{
+        
+    while(min_heap.size != 0)
+    {
+        let min = Math.min(...min_heap.values()) //min value
+        let min_key = getByValue(min)
+        console.log(min_key)
+        if(min_key !== JSON.stringify([destRow, destCol]))
+        {
+            
+            let min_key_parsed = JSON.parse(min_key)
+            colorizeFindingPath(min_key_parsed[0], min_key_parsed[1], time)
+            time+=10
+
+            if(min_key_parsed[0]-1 != -1)
+            {
+                if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`))
+                {
+                    min_heap.set(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`, min_heap.get(min_key) + 1)
+                    parent.set(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`, min_key_parsed)
+                }
+            }
+            
+            if(min_key_parsed[0]+1 != rows.length)
+            {
+                if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`))
+                {
+                    min_heap.set(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`, min_heap.get(min_key) + 1)
+                    parent.set(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`, min_key_parsed)
+                }
+            }
+            
+            if(min_key_parsed[1]-1 != -1)
+            {
+                if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`))
+                {
+                    min_heap.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`, min_heap.get(min_key) + 1)
+                    parent.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`, min_key_parsed)
+                }
+            }
+            
+            if(min_key_parsed[1]+1 != rows[0].getElementsByTagName('td').length)
+            {
+                if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`))
+                {
+                    min_heap.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`, min_heap.get(min_key) + 1)
+                    parent.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`, min_key_parsed)
+                }
+            }
+
+            min_heap.delete(min_key)
+        }
+
+        else{
+            
+            // path.push([destRow, destCol])
+            // findAllAncestors(`[${destRow}, ${destCol}]`)
+            // colorizePath()
+            // min_heap.clear()
+            
+        }
+    }
+}
+
     
 const visual_btn = document.getElementsByClassName('visualise')[0]
 
@@ -159,6 +275,9 @@ visual_btn.addEventListener('click', function(){
     else if(opt == 2)
     {
         //Dijkstra
+        setMaps()
+        dijkstra()
+
     }
 })
 
