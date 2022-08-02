@@ -46,13 +46,15 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
+    font-size: 20px;
 }
 
 .note{
     text-align: center;
     font-family: var(--font);
     color: var(--bg);
+    font-size: 20px;
 }
 .cell-btn{
     width: 100%;
@@ -79,12 +81,20 @@ select option{
 
 @keyframes findColor {
     0%{
+        border-radius: 75%;
+        background-color: rgb(0, 51, 102);
+    }
+    25%{
         border-radius: 50%;
         background-color: rgb(8, 181, 109);
     }
     50%{
         border-radius: 25%;
         background-color: rgb(58, 167, 165);
+    }
+    75%{
+        border-radius: -5%;
+        background-color: rgb(49, 169, 105);
     }
     100%{
         border-radius: 0;

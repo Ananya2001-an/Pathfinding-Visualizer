@@ -190,11 +190,11 @@ function getByValue(searchValue) {
 
 function findAllAncestors(arr) {
     let p = parent.get(arr)
-    if(p != undefined || p!= null)
+    if(p != undefined)
     {
         path.push(p)
+        findAllAncestors(`[${p[0]}, ${p[1]}]`)
     }
-    findAllAncestors('p')
 }
 
 const dijkstra = ()=>{
@@ -203,11 +203,11 @@ const dijkstra = ()=>{
     {
         let min = Math.min(...min_heap.values()) //min value
         let min_key = getByValue(min)
-        console.log(min_key)
-        if(min_key !== JSON.stringify([destRow, destCol]))
+        let min_key_parsed = JSON.parse(min_key)
+
+        if(min_key !== `[${destRow}, ${destCol}]`)
         {
             
-            let min_key_parsed = JSON.parse(min_key)
             colorizeFindingPath(min_key_parsed[0], min_key_parsed[1], time)
             time+=10
 
@@ -215,7 +215,7 @@ const dijkstra = ()=>{
             {
                 if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`))
                 {
-                    min_heap.set(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`, min_heap.get(min_key) + 1)
+                    min_heap.set(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`, parseInt(min_heap.get(min_key)) + 1)
                     parent.set(`[${min_key_parsed[0]-1}, ${min_key_parsed[1]}]`, min_key_parsed)
                 }
             }
@@ -224,7 +224,7 @@ const dijkstra = ()=>{
             {
                 if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`))
                 {
-                    min_heap.set(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`, min_heap.get(min_key) + 1)
+                    min_heap.set(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`, parseInt(min_heap.get(min_key)) + 1)
                     parent.set(`[${min_key_parsed[0]+1}, ${min_key_parsed[1]}]`, min_key_parsed)
                 }
             }
@@ -233,7 +233,7 @@ const dijkstra = ()=>{
             {
                 if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`))
                 {
-                    min_heap.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`, min_heap.get(min_key) + 1)
+                    min_heap.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`, parseInt(min_heap.get(min_key)) + 1)
                     parent.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]-1}]`, min_key_parsed)
                 }
             }
@@ -242,7 +242,7 @@ const dijkstra = ()=>{
             {
                 if((min_heap.get(min_key) + 1) < min_heap.get(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`))
                 {
-                    min_heap.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`, min_heap.get(min_key) + 1)
+                    min_heap.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`, parseInt(min_heap.get(min_key)) + 1)
                     parent.set(`[${min_key_parsed[0]}, ${min_key_parsed[1]+1}]`, min_key_parsed)
                 }
             }
@@ -252,10 +252,10 @@ const dijkstra = ()=>{
 
         else{
             
-            // path.push([destRow, destCol])
-            // findAllAncestors(`[${destRow}, ${destCol}]`)
-            // colorizePath()
-            // min_heap.clear()
+            path.push([destRow, destCol])
+            findAllAncestors(`[${destRow}, ${destCol}]`)
+            colorizePath()
+            min_heap.clear()
             
         }
     }
