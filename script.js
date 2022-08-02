@@ -99,7 +99,7 @@ const colorizePath = (t=0)=>{
             let r = path[i][0]
             let c = path[i][1]
             btn[r*(rows[0].getElementsByTagName('td').length) + c].style.animation = `pathColor 1s ease-in-out ${t}ms 1 forwards`
-            t+=10
+            t+=100
         }
     }
     

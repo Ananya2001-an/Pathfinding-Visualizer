@@ -66,12 +66,13 @@ body{
 }
 
 select{
-    width: 250px;
-    height: 30px;
+    width: 200px;
+    height: 42px;
     background: none;
+    padding: 5px;
+    border:1px solid white;
     font-family: var(--font);
     color: white;
-    border: 0;
     font-size: 20px;
 }
 select option{
@@ -104,11 +105,19 @@ select option{
 
 @keyframes pathColor {
     0%{
+        border-radius: 75%;
+        background-color: var(--path);
+    }
+    25%{
         border-radius: 50%;
         background-color: var(--path);
     }
     50%{
         border-radius: 25%;
+        background-color: var(--path);
+    }
+    75%{
+        border-radius: 10%;
         background-color: var(--path);
     }
     100%{
