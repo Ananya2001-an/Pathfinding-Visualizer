@@ -284,15 +284,22 @@ visual_btn.addEventListener('click', function(){
 
     if(opt == 1) //option 1
     {   //DFS
+        const dfs_info = document.getElementsByClassName('algo-info')[0]
+        dfs_info.textContent = "DFS doesn't guarantee shortest path!" 
         dfs(startRow, startCol)
         colorizePath()
     } 
     else if(opt == 2)//option 2
     {
         //Dijkstra
+        const dijk_info = document.getElementsByClassName('algo-info')[0]
+        dijk_info.textContent = "Dijkstra guarantees shortest path if no negative weights present.\
+        Also in an unweighted graph it behaves just like BFS!" 
         setMaps()
         dijkstra()
 
     }
 })
+
+
 
