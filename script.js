@@ -1,9 +1,10 @@
 const rows = document.getElementsByTagName('tr')
-let startRow
-let startCol 
-let destRow
-let destCol
+let startRow //row index for start node
+let startCol //column index for start node
+let destRow //row index for destination node
+let destCol //column index for destination node
 
+//each table cell holds a button
 for(let i=0;i<rows.length;i++)
 {
     for(let j=0;j<rows[i].getElementsByTagName('td').length;j++)
@@ -13,26 +14,31 @@ for(let i=0;i<rows.length;i++)
 }
 
 
-let count = 0
-let path = new Array()
-let min_heap = new Map()
-const btn = document.getElementsByClassName('cell-btn')
+let count = 0 //to distinguish start, end and block nodes
+let path = new Array() //holds the shortest path (all nodes falling in it)
+let min_heap = new Map() //used in Dijkstra method to get nearest node(which has smallest value)
+//everytime, behaves like a min heap hence the name, implemented using a map 
 
+const btn = document.getElementsByClassName('cell-btn') //get all buttons/table cells
+
+//for each button event listener added so as to create start, end and block nodes
 for(let i=0;i<btn.length;i++)
 {  
     btn[i].addEventListener('click', ()=>{
         if(count == 0)
         {
+            //start node
             btn[i].style.backgroundColor = "green"
             btn[i].value = 0
             
             for(let j=0;j<rows.length;j++)
             {
+                //get row and column index for this particular button
                 for(let k=0;k<rows[j].getElementsByTagName('td').length;k++)
                 {
                     if(i == (j*(rows[j].getElementsByTagName('td').length) + k))
                     {
-                        startRow = j
+                        startRow = j 
                         startCol = k
                         path.push([startRow, startCol])
                         break
@@ -43,6 +49,7 @@ for(let i=0;i<btn.length;i++)
         } 
         else if(count == 1)
         {
+            //end node
             btn[i].style.backgroundColor = "red" 
             for(let j=0;j<rows.length;j++)
             {
@@ -59,7 +66,7 @@ for(let i=0;i<btn.length;i++)
             count++
         }
         else
-        {   //blocks
+        {   //block nodes
             btn[i].style.backgroundColor = "var(--grid)"
             btn[i].value = '-1'
         }
@@ -76,10 +83,12 @@ function isArrayInArray(arr, item){
     return contains;
 }
 
+//called for each visited node (delay of 10 ms between each consecutive animation)
 const colorizeFindingPath = (sr, sc, t)=>{
     btn[sr*rows[0].getElementsByTagName('td').length + sc].style.animation = `findColor 1s ease-in-out ${t}ms 1 forwards`
 }
 
+//called for visualising the shortest path
 const colorizePath = (t=0)=>{
 
     if(document.getElementsByTagName('select')[0].value != 2)
@@ -106,7 +115,7 @@ const colorizePath = (t=0)=>{
 }
 
 
-let time = 10 //ms
+let time = 10 //in ms
 
 const dfs = (sr, sc)=>{
     if(sr == destRow && sc == destCol)
@@ -158,12 +167,14 @@ const dfs = (sr, sc)=>{
         }
     }
 
-    path.pop()
+    path.pop() //removes last element from array
     return false
 }
 
-let parent = new Map()
+let parent = new Map() //to hold parent node of a node(neighbor)
+//when its value gets updated with a smaller value according to dijkstra function
 
+//initialise min_heap with all nodes with their respective values except blocks
 function setMaps(){
     for(let i=0;i<rows.length;i++)
     {
@@ -180,7 +191,7 @@ function setMaps(){
 
 
 
-
+//get key of the entry with smallest value
 function getByValue(searchValue) {
   for (let [key, value] of min_heap.entries()) {
     if (value == searchValue)
@@ -188,6 +199,7 @@ function getByValue(searchValue) {
   }
 }
 
+//push all shortest path nodes in path array by getting parents of each node starting from end node
 function findAllAncestors(arr) {
     let p = parent.get(arr)
     if(p != undefined)
@@ -202,14 +214,16 @@ const dijkstra = ()=>{
     while(min_heap.size != 0)
     {
         let min = Math.min(...min_heap.values()) //min value
-        let min_key = getByValue(min)
-        let min_key_parsed = JSON.parse(min_key)
+        let min_key = getByValue(min) //returns key of string type
+        let min_key_parsed = JSON.parse(min_key)//parse to get object from string
 
         if(min_key !== `[${destRow}, ${destCol}]`)
         {
             
             colorizeFindingPath(min_key_parsed[0], min_key_parsed[1], time)
             time+=10
+
+            //updating values of neighbors 
 
             if(min_key_parsed[0]-1 != -1)
             {
@@ -247,32 +261,33 @@ const dijkstra = ()=>{
                 }
             }
 
+            //delete current key since updated all its neighbors
             min_heap.delete(min_key)
         }
 
-        else{
+        else{ //found end node, stop searching, push nodes to path array
             
             path.push([destRow, destCol])
             findAllAncestors(`[${destRow}, ${destCol}]`)
-            colorizePath()
-            min_heap.clear()
+            colorizePath()//visualise it
+            min_heap.clear() //clear min_heap to end loop
             
         }
     }
 }
 
-    
+//button that calls respective algorithms depending on select option chosen    
 const visual_btn = document.getElementsByClassName('visualise')[0]
 
 visual_btn.addEventListener('click', function(){
     let opt = document.getElementsByTagName('select')[0].value
 
-    if(opt == 1)
+    if(opt == 1) //option 1
     {   //DFS
         dfs(startRow, startCol)
         colorizePath()
     } 
-    else if(opt == 2)
+    else if(opt == 2)//option 2
     {
         //Dijkstra
         setMaps()
