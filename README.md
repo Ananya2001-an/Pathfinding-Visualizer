@@ -1,4 +1,4 @@
-# Pathfinding-Visualiser
+# Pathfinding-Visualizer
 
 Implements famous shortest path finding algorithms and visualises them on a grid.
 
