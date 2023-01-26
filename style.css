@@ -69,7 +69,6 @@ body{
 .cell-btn{
     width: 100%;
     height: 100%;
-    border-radius: 0;
     border: 0.1rem solid var(--grid);
     background-color: white;
     cursor: pointer;
@@ -145,13 +144,5 @@ table{
     height: 60vh;
     border: 0.1rem solid var(--grid);
     border-collapse: collapse;
-}
-td{
-    padding: 0;
-    margin: 0;
-}
-
-::-webkit-scrollbar{
-   display: none;
 }
 
