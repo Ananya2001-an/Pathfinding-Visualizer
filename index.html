@@ -35,13 +35,13 @@
     <table id="table"></table>
     <script>
         let output = '';
-        for (let i = 0; i < 25; i++) {
-          output += `<tr>`;
-          for (let j = 0; j < 20; j++) {
-            output += `<td style="padding:0; border:1px solid lightblue"></td>`;
-          }
-          output += `</tr>`;
-        }
+        for (let i = 0; i < 10; i++) {
+            output += `<tr>`;
+            for (let j = 0; j < 35; j++) {
+              output += `<td style="padding:0px; border:1px solid lightblue"></td>`;
+            }
+            output += `</tr>`;
+         }
 
         document.getElementById('table').innerHTML = output;
     </script>
