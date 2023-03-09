@@ -1,10 +1,13 @@
-# Pathfinding-Visualizer
+# Pathfinding Visualizer 🚓
 
-Implements famous shortest path finding algorithms and visualises them on a grid.
+Implements famous shortest path finding algorithms like **Dijkstra** and visualises the searching process on a grid. Only used plain native javascript.
 
-Only used plain native javascript (no special frameworks like react, vue or angular).
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/55504616/223959488-3a31e3d1-dab9-45e3-a3e9-3057711976f4.gif"/>
+</p>
 
+## How to play?
 
-![edit](https://user-images.githubusercontent.com/55504616/183072231-69b9dd60-0d73-4c2d-955d-108e4628a914.png)
-
-
+1. Choose one algorithm from the dropdown in the navbar.
+2. Choose start🟩 and end🟥 points on the grid. Later you can also add blocks🟦 to create a unique maze.
+3. Click on "Visualise" button to see the magic unfold! 🌠
