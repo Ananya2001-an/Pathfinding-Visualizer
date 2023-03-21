@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    font-family: "Lato";
 }
 
 .header{
@@ -16,7 +17,6 @@ body{
 }
 
 .header nav h1{
-    font-family: var(--font);
     color: white;
     margin-left: 10px;
     font-size: 30px;
@@ -26,22 +26,21 @@ body{
     width: 150px;
     height: 40px;
     margin-right: 10px;
-    background-color: white;
-    border: 0;
+    background-color: transparent;
+    border: 2px solid white;
     font-size: 20px;
-    font-family: var(--font);
-    color: var(--bg);
+    color: white;
     cursor: pointer;
     border-radius: 1.5rem;
 }
 
 .visualise:hover{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    background: white;
+    color: var(--bg);
 }
 
 .info-header{
     text-align: center;
-    font-family: var(--font);
     color: var(--bg);
     display: flex;
     justify-content: space-between;
@@ -52,14 +51,12 @@ body{
 
 .note{
     text-align: center;
-    font-family: var(--font);
     color: var(--bg);
     font-size: 20px;
 }
 
 .algo-info{
     text-align: center;
-    font-family: var(--font);
     color: var(--bg);
     font-size: 20px;
     font-weight: bold;
@@ -69,7 +66,10 @@ body{
 .cell-btn{
     width: 100%;
     height: 100%;
-    border: 0.1rem solid var(--grid);
+    border-bottom: 0.1rem solid var(--grid);
+    border-right: 0.1rem solid var(--grid);
+    border-top: 0;
+    border-left: 0;
     background-color: white;
     cursor: pointer;
 }
@@ -79,11 +79,16 @@ select{
     height: 42px;
     background: none;
     padding: 5px;
-    border:1px solid white;
-    font-family: var(--font);
+    border:0;
     color: white;
     font-size: 20px;
+    outline: none;
 }
+
+select:hover{
+    cursor: pointer;
+}
+
 select option{
     background-color: var(--bg);
 }
@@ -142,7 +147,6 @@ select option{
 table{
     width: 100%;
     height: 60vh;
-    border: 0.1rem solid var(--grid);
     border-collapse: collapse;
 }
 

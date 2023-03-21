@@ -1,5 +1,8 @@
 .git*
 .dockerignore
 Dockerfile
+LICENSE
+release.config.js
+CODE_OF_CONDUCT.md
 docker-compose.dev.yml
 docker-compose.yml
