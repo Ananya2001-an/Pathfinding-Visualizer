@@ -1,6 +1,5 @@
 :root{
-    --grid: rgb(177, 217, 255);
-    --path: rgb(255, 255, 148);
-    --font: 'Calibri';
-    --bg: rgb(70, 182, 180);
+    --grid: #146C94;
+    --path: #FBFFB1;
+    --bg: #146C94;
 }
