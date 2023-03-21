@@ -3,7 +3,7 @@
 Implements famous shortest path finding algorithms like **Dijkstra** and visualises the searching process on a grid. Only used plain native javascript.
 
 <p align="center">
- <img src="https://user-images.githubusercontent.com/55504616/223959488-3a31e3d1-dab9-45e3-a3e9-3057711976f4.gif"/>
+ <img src="https://user-images.githubusercontent.com/55504616/226624074-e1904200-6a74-4203-9bbf-5c5b348f253b.gif"/>
 </p>
 
 ## How to play?
