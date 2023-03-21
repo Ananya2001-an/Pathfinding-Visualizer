@@ -1,6 +1,6 @@
 # Pathfinding Visualizer 🚓
 
-Implements famous shortest path finding algorithms like **Dijkstra** and visualises the searching process on a grid. Only used plain native javascript.
+Implements famous shortest path finding algorithms like **Dijkstra** and visualizes the searching process on a grid. Only used plain native JavaScript.
 
 <p align="center">
  <img src="https://user-images.githubusercontent.com/55504616/226624074-e1904200-6a74-4203-9bbf-5c5b348f253b.gif"/>
