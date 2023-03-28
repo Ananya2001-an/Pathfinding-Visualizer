@@ -1,0 +1,87 @@
+/* done */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  background-color: var(--bg);
+}
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.all-symbols {
+  text-align: center;
+  color: var(--bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  font-size: 20px;
+}
+
+.symbol-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.symbol {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.note {
+  text-align: center;
+  color: var(--bg);
+  font-size: 20px;
+}
+
+.algo-info {
+  text-align: center;
+  color: var(--bg);
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 200px;
+  height: 42px;
+  margin-left: 50px;
+  background: none;
+  padding: 5px;
+  border: 0;
+  color: white;
+  font-size: 20px;
+  outline: none;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+select option {
+  background-color: var(--bg);
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 600px) {
+  nav,
+  .menu {
+    flex-direction: column;
+  }
+  select {
+    margin-left: 0;
+  }
+  .all-symbols {
+    padding: 10px;
+    flex-direction: column;
+  }
+}

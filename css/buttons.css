@@ -1,0 +1,31 @@
+.visualise{
+    width: 150px;
+    height: 40px;
+    margin-right: 10px;
+    background-color: transparent;
+    border: 2px solid white;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 1.5rem;
+}
+
+.visualise:hover{
+    background: white;
+    color: var(--bg);
+}
+
+.cell-btn{
+    width: 100%;
+    height: 100%;
+    border-bottom: 0.1rem solid var(--grid);
+    border-right: 0.1rem solid var(--grid);
+    border-top: 0;
+    border-left: 0;
+    background-color: white;
+    cursor: pointer;
+}
+
+.cell-btn:hover{
+    background-color: var(--grid);
+}

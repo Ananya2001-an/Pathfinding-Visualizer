@@ -1,0 +1,11 @@
+table{
+    width:70%;
+    height: 60vh;
+    border-collapse: collapse;
+}
+
+@media only screen and (max-width: 600px) {
+  table{
+      width: 100%;
+  }
+}

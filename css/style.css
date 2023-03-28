@@ -1,0 +1,16 @@
+@import url("./buttons.css");
+@import url("./header.css");
+@import url("./variables.css");
+@import url("./animate.css");
+@import url("./table.css");
+
+body{
+    margin: 0;
+    font-family: "Lato";
+}
+
+h1{
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
