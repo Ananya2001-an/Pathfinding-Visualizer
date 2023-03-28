@@ -1,9 +1,7 @@
-/* done */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
   background-color: var(--bg);
 }
 .menu {
@@ -71,7 +69,6 @@ select option {
   background-color: var(--bg);
 }
 
-/* Mobile devices */
 @media only screen and (max-width: 600px) {
   nav,
   .menu {
