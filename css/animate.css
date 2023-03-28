@@ -1,0 +1,45 @@
+@keyframes findColor {
+    0%{
+        border-radius: 75%;
+        background-color: var(--findColor-1);
+    }
+    25%{
+        border-radius: 50%;
+        background-color: var(--findColor-2);
+    }
+    50%{
+        border-radius: 25%;
+        background-color: var(--findColor-3);
+    }
+    75%{
+        border-radius: -5%;
+        background-color: var(--findColor-4);
+    }
+    100%{
+        border-radius: 0;
+        background-color: var(--findColor-5);
+    }
+}
+
+@keyframes pathColor {
+    0%{
+        border-radius: 75%;
+        background-color: var(--path);
+    }
+    25%{
+        border-radius: 50%;
+        background-color: var(--path);
+    }
+    50%{
+        border-radius: 25%;
+        background-color: var(--path);
+    }
+    75%{
+        border-radius: 10%;
+        background-color: var(--path);
+    }
+    100%{
+        border-radius: 0;
+        background-color: var(--path);
+    }
+}

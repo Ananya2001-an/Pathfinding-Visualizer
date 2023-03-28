@@ -1,6 +1,6 @@
-import { dijkstra } from "./utils/algorithms/dijkstra.js";
-import { dfs } from "./utils/algorithms/dfs.js";
-import { ROWS, COLS, btns } from "./utils/shared.js";
+import { dijkstra } from "../utils/algorithms/dijkstra.js";
+import { dfs } from "../utils/algorithms/dfs.js";
+import { ROWS, COLS, btns } from "../utils/shared.js";
 
 let grid = "";
 let startRow;

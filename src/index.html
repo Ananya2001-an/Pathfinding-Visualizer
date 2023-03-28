@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pathfinding Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <nav>
+        <div class="menu">
+          <div class="brand">
+            <img src="../favicon.png" height="40px" />
+            <h1>Pathfinding Visualizer</h1>
+          </div>
+          <select>
+            <option value="1" selected>Depth First Search</option>
+            <option value="2">Dijkstra</option>
+          </select>
+        </div>
+        <button class="visualise">Visualize</button>
+      </nav>
+      <div class="all-symbols">
+        <div class="symbol-info">
+          <div class="symbol" style="background-color: green"></div>
+          <p>Start Node</p>
+        </div>
+        <div class="symbol-info">
+          <div class="symbol" style="background-color: red"></div>
+          <p>End Node</p>
+        </div>
+        <div class="symbol-info">
+          <div class="symbol" style="background-color: var(--grid)"></div>
+          <p>Block/Wall Node</p>
+        </div>
+        <div class="symbol-info">
+          <div class="symbol" style="background-color: rgb(70, 182, 180)"></div>
+          <p>Visited Node</p>
+        </div>
+        <div class="symbol-info">
+          <div class="symbol" style="background-color: var(--path)"></div>
+          <p>Shortest path Node</p>
+        </div>
+      </div>
+      <p class="note">Click on 'Visualize' to see the algorithm come alive!</p>
+      <p class="algo-info"></p>
+    </div>
+    <div style="display: flex;justify-content: center;">
+      <table id="table"></table>
+    </div>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
